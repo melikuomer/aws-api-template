@@ -26,7 +26,7 @@ def generate_dependencies_layer(scope: Construct)-> lambda_.LayerVersion:
 
   #  --only-binary=:all:  forces uv to install only pre-built wheels and error if not available
   # --upgrade forces the latest version to be installed
-  command = f" uv pip install . --target {layer_directory}/python --python-platform x86_64-manylinux2014 --python-version {{cookiecutter.python_version}}"
+  command = f"uv pip install . --target {layer_directory}/python --python-platform x86_64-manylinux2014 --python-version {{cookiecutter.python_version}}"
 
   print(f"Running command: {command}")
   os.system(command)

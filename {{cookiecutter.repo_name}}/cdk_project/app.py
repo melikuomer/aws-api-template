@@ -7,7 +7,7 @@ from cdk_project.cdk_project_stack import CdkProjectStack
 
 
 app = cdk.App()
-CdkProjectStack(app, "CdkProjectStack",
+CdkProjectStack(app, "{{cookiecutter.stack_name}}-Stack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.

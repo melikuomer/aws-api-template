@@ -2,7 +2,8 @@
   "project_name": "My Awesome App",
   "repo_name": "{{ cookiecutter.project_name | slugify }}",
   "author_name": "Your Name",
-  "description": "A fantastic new application",
+  "description": "An API for to be used from lambda function url",
+  "stack_name": "{{cookiecutter.repo_name}}",
   "python_version": "3.11",
   "_copy_without_render": [
     "**/.venv/**/*",
