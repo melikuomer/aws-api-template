@@ -3,8 +3,9 @@ from aws_cdk import (
   aws_lambda as lambda_,
 )
 from constructs import Construct
-
+from project_root import root_path
 from ..config import LAMDA_PYTHON_VERSION
+import subprocess
 
 import os
 
@@ -26,10 +27,19 @@ def generate_dependencies_layer(scope: Construct)-> lambda_.LayerVersion:
 
   #  --only-binary=:all:  forces uv to install only pre-built wheels and error if not available
   # --upgrade forces the latest version to be installed
-  command = f"uv pip install . --target {layer_directory}/python --python-platform x86_64-manylinux2014 --python-version {{cookiecutter.python_version}}"
+  command = f"uv pip install . --target {output_dir} --python-platform x86_64-manylinux2014 --python-version 3.11"
 
   print(f"Running command: {command}")
-  os.system(command)
+
+  os.chdir(root_path)
+  process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=root_path)
+  stdout, stderr = process.communicate()
+
+  if process.returncode != 0:
+    print(f"Command failed with error: {stderr.decode()}")
+    raise Exception(f"Failed to install dependencies: {stderr.decode()}")
+
+  print(stdout.decode())
 
   layer_code = lambda_.Code.from_asset(layer_directory)
 
