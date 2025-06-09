@@ -1,0 +1,22 @@
+[project]
+name = "cookiecutter_test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.12",
+    "uvicorn>=0.34.3",
+]
+authors = [
+    {name = "{{cookiecutter.author_name}}"},
+]
+
+[dependency-groups]
+dev = [
+    "pytest==6.2.5",
+]
+infra = [
+    "aws-cdk-lib==2.199.0",
+    "constructs>=10.0.0,<11.0.0",
+]
