@@ -8,7 +8,6 @@ from ..config import LAMDA_PYTHON_VERSION
 
 import os
 
-
 def generate_dependencies_layer(scope: Construct)-> lambda_.LayerVersion:
 
   layer_directory = 'dist'
